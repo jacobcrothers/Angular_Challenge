@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="overlay" *ngIf="isLoadingList || overlayText?.length">
+      <mat-spinner *ngIf="isLoadingList"></mat-spinner>
+      <div class="overlay-text" *ngIf="!isLoadingList && overlayText?.length">
+          {{overlayText}}
+      </div>
+  </div>
+  <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="table" matSort matSortActive="login" matSortDirection="asc">
+          <ng-container matColumnDef="avatar">
+              <th mat-header-cell *matHeaderCellDef>Avatar</th>
+              <td mat-cell *matCellDef="let element">
+                  <img [src]="element.author.avatar_url" alt="Avatar" class="avatar">
+              </td>
+          </ng-container>
+
+          <ng-container matColumnDef="sha">
+              <th mat-header-cell *matHeaderCellDef>Sha</th>
+              <td mat-cell *matCellDef="let element">{{ element.sha }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.author.login }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
+  <mat-paginator showFirstLastButtons [length]="listLength" [pageSize]="9"
+      aria-label="Select page of commits list">
+  </mat-paginator>
+</div>
