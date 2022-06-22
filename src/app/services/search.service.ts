@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class SearchService {
 
-  private reqPath = "repos/giorgiebanoidze25/personal/commits";
+  private reqPath = "repos/giorgiebanoidze25/Angular_Challenge/commits";
   private currentPage: number = 1;
 
   private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
